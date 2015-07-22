@@ -19,6 +19,18 @@ public class OperateUser extends Model {
 
     private static final long serialVersionUID = 21943311362L;
     public static final String CACHEKEY = "OpUser_";
+    public static final  String LOGIN_ID             = "operator_user_loginId"; //登陆ID
+    public static final  String LOGIN_NAME           = "operator_user_Name"; //登陆密码
+    public static final  String LOST_USER_ID         = "operator_user_lostUserId"; // 找回密码时候用到的Session
+    public static final  String LOGIN_SESSION_USER   = "operator_user_LoginUser_";
+
+
+    /**
+     * 关联商户
+     */
+    @JoinColumn(name = "operator_id", nullable = true)
+    @ManyToOne
+    public Operator operator;
 
     @Column(name = "login_name")
     public String loginName;
@@ -79,6 +91,15 @@ public class OperateUser extends Model {
     }
 
     /**
+     * 根据公司 查看公司员工数量
+     * @param operator
+     * @return
+     */
+    public static Long countByOperator(Operator operator) {
+        return OperateUser.count("operator = ?" , operator);
+    }
+
+    /**
      * 检查用户是否可以登录.
      * @param loginName 登录名
      * @param password 密码
@@ -88,5 +109,25 @@ public class OperateUser extends Model {
         OperateUser operateUser = OperateUser.find("loginName = ?", loginName).first();
         String encryptedPassword = DigestUtils.md5Hex(password + operateUser.passwordSalt);
         return encryptedPassword.equals(operateUser.encryptedPassword);
+    }
+
+
+    /**
+     * 检查用户是否可以登录.
+     * @param loginName 登录名
+     * @param password 密码
+     * @return 是否登录成功.
+     */
+    public static OperateUser findByLoginNameAndPassword(String loginName, String password) {
+        OperateUser operateUser = OperateUser.find("loginName = ?", loginName).first();
+        if(operateUser != null ) {
+            String encryptedPassword = DigestUtils.md5Hex(password + operateUser.passwordSalt);
+            if (encryptedPassword.equals(operateUser.encryptedPassword)) {
+                return operateUser;
+            } else {
+                return null;
+            }
+        }
+        return null;
     }
 }

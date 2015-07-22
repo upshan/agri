@@ -5,8 +5,8 @@ import play.db.jpa.Model;
 import javax.persistence.*;
 import java.util.Date;
 
-//@Entity
-//@Table(name = "operate_user_login_histories")
+@Entity
+@Table(name = "operate_user_login_histories")
 public class OperateUserLoginHistory extends Model {
 
     private static final long serialVersionUID = 2406119113062L;
@@ -26,6 +26,18 @@ public class OperateUserLoginHistory extends Model {
 
     @Column(name = "session_id", length = 50)
     public String sessionId;
+
+
+    public OperateUserLoginHistory() {
+        super();
+    }
+
+    public OperateUserLoginHistory(OperateUser user , String loginIp) {
+        this.user = user;
+        this.loginAt = new Date();
+        this.loginIp = loginIp;
+        this.save();
+    }
 
 
 }

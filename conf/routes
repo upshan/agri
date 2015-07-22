@@ -16,6 +16,7 @@ GET     /public/                                staticDir:public
 
 # SYSTEM 后台管理
 GET   /systems                                   system.Application.index
+GET   /system/login
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

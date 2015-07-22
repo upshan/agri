@@ -4,16 +4,14 @@ import models.constants.DeletedStatus;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import play.db.jpa.Model;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * 运营商.
  */
-//@Entity
-//@Table(name = "operators")
+@Entity
+@Table(name = "operators")
 public class Operator extends Model {
 
     private static final long serialVersionUID = 230901367311362L;
@@ -51,6 +49,16 @@ public class Operator extends Model {
 
     @Column(name = "updated_by")
     public String updatedBy;
+
+
+    /**
+     * 根据公司名称 查询公司
+     * @param name
+     * @return
+     */
+    public static Operator findByName(String name) {
+        return Operator.find("name = ? and deleted = ?" , name , DeletedStatus.UN_DELETED).first();
+    }
 
 
     public static void update(long id, Operator operator, String updatedBy) {
