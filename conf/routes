@@ -11,5 +11,11 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
+
+
+
+# SYSTEM 后台管理
+GET   /systems                                   system.Application.index
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
