@@ -12,7 +12,8 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 
-
+# Merchant 商户后台管理
+GET   /merchants                                merchant.Application.index
 
 # SYSTEM 后台管理
 GET   /systems                                   system.Application.index

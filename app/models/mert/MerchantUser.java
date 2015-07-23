@@ -132,7 +132,7 @@ public class MerchantUser extends Model {
         return true;
     }
 
-    public static MerchantUser getLoginUser(String userName , String password) {
+    public static MerchantUser findByLoginNameAndPassword(String userName , String password) {
         if (StringUtils.isBlank(password)) {
             Logger.info("传入密码为空，登录失败");
             return null;

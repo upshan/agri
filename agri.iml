@@ -30,7 +30,7 @@
     <content url="file://$MODULE_DIR$/modules/paginate-head">
       <sourceFolder url="file://$MODULE_DIR$/modules/paginate-head/app" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">
