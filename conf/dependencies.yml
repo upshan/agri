@@ -7,7 +7,6 @@ require:
     - play1 -> paginate head
     - play1 -> app-version 0.2
     - play1 -> factory-boy 1.0
-    - play1 -> redis 0.3
     - gym_cache_helper -> gym_cache_helper
     - gym_supports -> gym_supports
     - gym_paginate_ext -> gym_paginate_ext
